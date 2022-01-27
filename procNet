@@ -1,0 +1,38 @@
+#!/usr/bin/perl -wna
+
+use warnings;
+use strict;
+
+BEGIN {
+
+	@ARGV == 1 or warn "Usage: procNet /proc/net/tcp\n\n" and exit 1;
+	print `clear`;
+	
+}
+
+
+chomp;
+
+if ( /\d/g ) {
+	
+	my @ip_port_local = split /:/,$F[1];
+	my @ip_port_remote = split /:/,$F[2];
+
+	my @ip = map hex($_), ($ip_port_local[0]=~/../g);
+	my $ip = join '.', reverse(@ip);
+	my $port = hex $ip_port_local[1];
+
+	my @ip_remote = map hex($_), ($ip_port_remote[0]=~/../g);
+	my $ip_remote=join '.', reverse(@ip_remote);
+	my $port_remote=hex $ip_port_remote[1];
+
+
+	my $uid = $F[7];
+
+	print "\nIP local: $ip:$port\nIP remote: $ip_remote:$port_remote\nUID: $uid\n\n";
+
+
+}
+
+
+
