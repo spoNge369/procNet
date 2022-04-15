@@ -7,7 +7,7 @@ use Term::ANSIColor qw(:constants);
 BEGIN {
 
 	@ARGV == 1 or warn "\n\tUsage: perl procNet /proc/net/tcp\n\n" and exit 1;
-	print  GREEN,"\n[+] ", RESET, "Parsing data:\n";
+	print GREEN,"\n[+] ", RESET, "Parsing data:\n";
 	
 }
 
