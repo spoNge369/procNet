@@ -2,16 +2,14 @@
 
 use warnings;
 use strict;
+use Term::ANSIColor qw(:constants);
 
 BEGIN {
 
-	@ARGV == 1 or warn "Usage: procNet /proc/net/tcp\n\n" and exit 1;
-	print `clear`;
+	@ARGV <= 2 or warn "\n\tUsage: perl procNet /proc/net/tcp\n\n" and exit 1;
+	print  GREEN,"\n[+] ", RESET, "Parsing data:\n";
 	
 }
-
-
-chomp;
 
 if ( /\d/g ) {
 	
@@ -26,13 +24,7 @@ if ( /\d/g ) {
 	my $ip_remote=join '.', reverse(@ip_remote);
 	my $port_remote=hex $ip_port_remote[1];
 
-
-	my $uid = $F[7];
-
-	print "\nIP local: $ip:$port\nIP remote: $ip_remote:$port_remote\nUID: $uid\n\n";
-
+	my $uid = $F[7]; 
+        print GREEN, "\n\tIP local: ", RESET, "$ip:", RED,"$port\n\t", GREEN,"IP remote: ", RESET,"$ip_remote:", RED,"$port_remote\n\t", GREEN, "UID: ", RESET, "$uid\n\n";
 
 }
-
-
-
